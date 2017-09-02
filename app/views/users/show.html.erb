@@ -1,0 +1,31 @@
+<div class="container">
+
+  <div class="row" style="padding-top: 20px; padding-bottom: 30px;">
+    <% if @user.profile_image != nil %>
+      <div class="col-sm-12" style="padding-bottom: 20px;"><%= attachment_image_tag(@user, :profile_image, :fill, 150, 150) %></div>
+    <% else %>
+      <div class="col-sm-12" style="padding-bottom: 20px;"><%= image_tag("sample.jpg", :size => "150x150") %></div>
+    <% end %>      
+    <div class="col-sm-2">アカウント名</div>
+    <div class="col-sm-10"><%= @user.name %></div>
+    <div class="col-sm-2">投稿数</div>  
+    <div class="col-sm-10"><%= @user.posts.count %></div>  
+  </div>
+
+  <div class="row">
+    <h4><%= @user.name %>さんが投稿したコメント</h4>
+    <% @user.posts.each do |post| %>
+      <div class="col-sm-8">
+          <h4 class="user">
+              <span class="user-name">
+                <%= link_to post.user.email, user_path(post.user) %>
+              </span>
+          <span class="user-id"><%= post.user.email %></span>
+          </h4>
+          <div class="post-body">
+              <%= post.body %>
+          </div>
+      </div>
+    <% end %>
+  </div>
+</div>

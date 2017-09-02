@@ -1,0 +1,11 @@
+<%= form_with(model: reply, url: post_replies_url, local: true) do |form| %>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body, id: :reply_body %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
